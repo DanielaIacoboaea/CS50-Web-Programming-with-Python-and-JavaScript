@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <title>Search</title>
+    </head>
+    <body>
+        <header class="navigation">
+            <nav class="nav-bar">
+                <ul>
+                    <li class="nav-link"><a href="index.html">Google Search</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h3 class="text-red header">Advanced search</h3>
+            <p style="margin-left: 1rem;">Find pages with...</p>
+            <div class="advanced-wrapper">
+                <form class="adv-search-form" action="https://www.google.com/search" autocomplete="off">
+                    <div class="search-item">
+                        <label for="all_words">all these words:</label>
+                    </div>
+                    <div class="search-item">
+                        <input class="advanced-text" type="text" name="as_q" id="all_words">
+                    </div>
+                    <div class="search-item guide">
+                        <p>Type the important words: cat random grumpy</p>
+                    </div>
+                    <div class="search-item">
+                        <label for="exact_words">this exact word or phrase:</label>
+                    </div>
+                    <div class="search-item">
+                        <input class="advanced-text" type="text" name="as_epq" id="exact_words">
+                    </div>
+                    <div class="search-item guide">
+                        <p>Put exact words in quotes: "outside food"</p>
+                    </div>
+                    <div class="search-item">
+                        <label for="any_words">any of these words:</label>
+                    </div>
+                    <div class="search-item">
+                        <input class="advanced-text" type="text" name="as_oq" id="any_words">
+                    </div>
+                    <div class="search-item guide">
+                        <p>Type OR between all the words you want: Shorthair OR Sphynx</p>
+                    </div>
+                    <div class="search-item">
+                        <label for="none_word">none of these words:</label>
+                    </div>
+                    <div class="search-item">
+                        <input class="advanced-text" type="text" name="as_eq" id="none_words">
+                    </div>
+                    <div class="search-item guide">
+                        <p>Put a minus sign just before words that you don't want: -dog</p>
+                    </div>
+                    <input type="hidden" name="as_qdr" value="all">
+                    <input type="hidden" name="as_occt" value="any">
+                    <input type="hidden" name="safe" value="active">
+                    <input id="blue-input" type="submit" value="Advanced Search">
+                </form>
+            </div>
+        </main>
+        <footer>
+            <p>Not <strong>that </strong><span class="text-blue">G</span><span class="text-red">o</span><span class="text-yellow">o</span><span class="text-blue">g</span><span class="text-green">l</span><span class="text-red">e</span>. </p> 
+            <p>Just CS50's Web Programming course.</p>
+            <p>Project 0.</p>
+        </footer>
+    </body>
+</html>
