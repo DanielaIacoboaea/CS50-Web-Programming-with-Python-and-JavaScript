@@ -1,0 +1,197 @@
+/*================================
+    Contents
+----------------------------------
+    1. General style 
+    2. Active Listings
+    3. Create listing
+    4. Categories
+    5. Responsive design
+=================================*/
+
+/*================================
+    1. General style 
+=================================*/
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+html{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+body {
+    padding: 10px;
+    font-family: 'BioRhyme', serif;
+    font-weight: 300;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5{
+    font-family: 'Macondo Swash Caps', cursive;
+}
+h1, .greeting{
+    margin-left: 1rem;
+}
+.container{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 2em;
+}
+
+a{
+    transition-duration: 200ms;
+}
+a:hover{
+ color: rgba(116, 0, 1, 0.9);
+ text-decoration: none;
+}
+
+/*================================
+    2. Active Listings
+=================================*/
+.listing-container{
+    display: flex;
+    max-height: max-content;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+    align-items: center;
+    border-style: solid;
+    border-width: 2.5px;
+    border-image: linear-gradient(to right, 
+    rgba(116, 0, 1, 0.9) 1%, 
+    rgba(255, 216, 0, 0.9) 40%,
+    rgba(14, 26, 64, 0.9) 60%, 
+    rgba(26, 71, 42, 0.9) 80%) 0 0 100% 0/2.5px 0 2.5px 0;
+}
+.item {
+    padding: 1em;
+}
+.item img{
+    max-width: 80%;
+    height: auto;
+}
+.item span{
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 1.1rem;
+}
+.comment{
+    background-color: #111;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    transition-duration: 300ms;
+    padding: 7px 20px;
+    font-size: 0.9rem;
+}
+.comment:hover{
+    opacity: 0.8;
+}
+.comments{
+    flex-wrap: wrap;
+    min-height: max-content;
+}
+
+/*================================
+    3. Create Listing
+=================================*/
+.add-listing-header{
+    margin-bottom: 1em;
+}
+.add-listing{
+    min-height: 50vh;
+    border-style: solid;
+    border-width: 2.5px;
+    border-image: linear-gradient(to right, 
+    rgba(116, 0, 1, 0.9) 1%, 
+    rgba(255, 216, 0, 0.9) 40%, 
+    rgba(14, 26, 64, 0.9) 60%, 
+    rgba(26, 71, 42, 0.9) 80%) 100% 0 100% 0/2.5px 0 2.5px 0;
+    margin-bottom: 1rem;
+}
+form {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+input[type="submit"]{
+    background-color: #111;
+    color: #fff;
+    padding: 14px 28px;
+    font-size: 16px;
+    transition-duration: 200ms;
+    cursor: pointer;
+    border-radius: 5px;
+}
+input[type="submit"]:hover{
+    opacity: 0.8;
+}
+input{
+    text-indent: 3px;
+    outline: none;
+}
+textarea{
+    text-indent: 3px;
+    outline: none;
+    overflow-y: scroll;
+    resize: none;
+    height: 8%;
+    max-width: 100%;
+}
+
+#id_watchList{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+#id_watchList > *{
+    margin-right: 0.5rem;
+}
+
+.form-input{
+    display: inline-block;
+}
+
+/*================================
+    4. Categories
+=================================*/
+.message{
+    background-color: #111;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 14px 28px;
+}
+
+.categories{
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/*================================
+    5. Responsive design
+=================================*/
+
+@media(max-width: 800px)
+{
+    .item img{
+        max-width: 60%;
+        height: auto;
+    }
+    .listing-container{
+        flex-direction: column;
+    }
+    body p{
+        font-size: 1.05rem;
+    }
+    body label{
+        font-size: 1rem;
+    }
+}
+@media(max-width: 900px)
+{
+    .container{
+        width: 100%;
+    }
+}

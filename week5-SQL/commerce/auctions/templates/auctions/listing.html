@@ -1,0 +1,70 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message %}
+    <p class="message">{{ message }}</p>
+    {% endif %}
+    <h2>Listing: {{ listing.title }}</h2>
+    <p>{{ listing.description}}</p>
+    <div class="listing-container">
+        <div class="item">
+            <img src="{{ listing.image }}" alt="{{ listing.title }}">
+        </div>
+        <div class="item">
+            <p>Listed by: <span> {{ listing.initiator }}<span></p>
+            <p> Current Price: <span> ${{ highestBid }}<span></p>
+            <p> Created on <span>  {{ listing.date }}<span></p>
+            {% if category %}
+            <p>Category: <span>  {{ category.name }}<span></p>
+            {% else %}
+            <p>Category: No category listed</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="listing-container comments">
+        {% if comments %}
+        {% for comment in comments %}
+            <div class="item comment">
+                <h5 style="display: inline-block;">{{ comment.creator }}: </h5>
+                <p style="display: inline-block;">{{ comment.content}}</p>
+            </div>
+        {% endfor %}
+        {% else %}
+        <p>No comments for this listing.</p>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+        {% if listing.status == 'a' %}
+        <div class="add-listing">
+            <form action="{% url 'listing' listing.id %}" method="post" autocomplete="off">
+                {% csrf_token %}
+                {% if owner %}
+                    <div class="item-add">
+                        <p class="form-input">{{ form.closeListing.label_tag }} {{ form.closeListing }}</p>
+                    </div>
+                    <div class="item-add">
+                        <p class="form-input">{{ form.addComment.label_tag }} {{ form.addComment }}</p>
+                    </div>
+                    <div class="item-add">
+                        <p class="form-input">{{ form.watchList.label_tag }} {{ form.watchList }}</p>
+                    </div>
+                {% else %}
+                    <div class="item-add">
+                        <span> ${{ highestBid }}<span></p>
+                        <p class="form-input">{{ form.bid.label_tag }} {{ form.bid }}</p>
+                    </div>
+                    <div class="item-add">
+                        <p class="form-input">{{ form.addComment.label_tag }} {{ form.addComment }}</p>
+                    </div>
+                    <div class="item-add">
+                        <p class="form-input">{{ form.watchList.label_tag }} {{ form.watchList }}</p>
+                    </div>
+                {% endif %}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        {% else %}
+        <p class="message">Closed Listing. <br>Winner: {{ user.username }}, having the Highest Bid of ${{ highestBid }}.</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

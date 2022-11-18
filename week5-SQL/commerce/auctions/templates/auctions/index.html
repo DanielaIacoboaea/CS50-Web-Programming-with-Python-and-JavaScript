@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {% for listing in listings %}
+    <div class="listing-container">
+        <div class="item">
+            <img src="{{ listing.image }}" alt="{{ listing.title }}">
+        </div>
+        <div class="item">
+            <a href="{% url 'listing' listing.id %}"><h3>{{ listing.title }}</h3></a>
+            <h4>Price: ${{ listing.start_bid }}</h4>
+            <p>Created on {{ listing.date }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    {% if closedListings %}
+    <p class="message">Closed Listing. Winner: {{ user.username }}</p>
+        {% for listing in closedListings %}
+          {% for field in listing %}
+            <div class="listing-container">
+                <div class="item">
+                    <img src="{{ field.image }}" alt="{{ field.title }}">
+                </div>
+                <div class="item">
+                    <a href="{% url 'listing' field.id %}"><h3>{{ field.title }}</h3></a>
+                    <p>Created on {{ field.date }}</p>
+                </div>
+            </div>
+            {% endfor %}
+         {% endfor %}
+    {% endif %}
+{% endblock %}

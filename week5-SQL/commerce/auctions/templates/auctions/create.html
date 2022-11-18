@@ -1,0 +1,16 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2 class="add-listing-header">Create Listing</h2>
+    <div class="add-listing">
+        <form action="{% url 'create' %}" method="post" autocomplete="off">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="item-add">
+                <p>{{ field.label_tag }} {{ field }}</p>
+            </div>
+            {% endfor %}
+            <input type="submit" value="Add Listing">
+        </form>
+    </div>
+{% endblock %}
