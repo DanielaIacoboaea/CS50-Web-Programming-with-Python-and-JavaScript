@@ -1,0 +1,131 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+body{
+    font-family: Calibri;
+    min-height: 100vh;
+}
+textarea {
+    min-height: 400px;
+    min-height: 400px;
+    overflow-y: scroll;
+    resize: none;
+}
+
+h1, h3{
+    color: #897D97;
+}
+
+/* style box for individual emails */
+.email-box{
+    display: flex;
+    justify-content: space-between;
+    border-bottom:  1px solid #B0A8B9;
+    cursor: pointer;
+    margin-left: 0.2rem;
+    margin-right: 0.1rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    padding-top: 0.5rem;
+    transition: all 150ms linear;
+}
+
+.email-box p:first-of-type{
+    font-weight: bold;
+}
+
+.email-box p{
+    text-align: left;
+    width: 25%;
+}
+
+.email-box p:last-of-type{
+    color: #897D97;
+    text-align: right;
+    width: 50%;
+}
+
+.email-box:hover{
+    border-radius: 5px;
+    box-shadow: 0px 0px 4px 0.5px #897D97;
+}
+
+#read-email{
+    background-color: #FAFAFA;
+}
+
+#reply, 
+#archive{
+    margin-bottom: 0.5rem;
+}
+h1{
+    margin-top: 1em;
+}
+
+input[type="submit"]{
+    margin-top: 1em;
+    margin-bottom: 3em;
+}
+
+#emails-view{
+    margin-bottom: 3em;
+    min-height: 70vh;
+    overflow-y: scroll;
+}
+.header{
+    margin-top: 6em;
+}
+
+#read-view{
+    min-height: 70vh;
+}
+
+@media(max-width: 850px){
+    .email-box{
+        flex-direction: column;
+    }
+    .email-box p{
+        margin-bottom: 0.3rem;
+        width: fit-content;
+    }
+    .email-box p:last-of-type{
+        width: fit-content;
+    }
+}
+a{
+    text-decoration: none;
+}
+
+/* boostrap style for buttons, adapt to content*/
+.buttons{
+    display: inline-block;
+    text-align: center;
+    background-color: transparent; 
+    color: #897D97; 
+    border: 1px solid #897D97;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+    outline: none;
+}
+
+.buttons:hover,
+.buttons::selection{
+    background-color: #897D97;
+    color: #fff;
+    outline: none;
+}
+
+.buttons:focus{
+    outline: none;
+}
+.buttons:focus{
+    background-color: #897D97;
+    color: #fff;
+    border: 1px solid #897D97;
+}

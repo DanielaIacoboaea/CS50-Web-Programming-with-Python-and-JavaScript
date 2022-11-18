@@ -1,0 +1,49 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h1>Mail</h1>
+    <hr>
+    <h2>{{ request.user.email }}</h2>
+
+    <button class="buttons" id="inbox">Inbox</button>
+    <button class="buttons" id="compose">Compose</button>
+    <button class="buttons" id="sent">Sent</button>
+    <button class="buttons" id="archived">Archived</button>
+    <a class="buttons" href="{% url 'logout' %}" style="text-decoration: none;">Log Out</a>
+    <hr>
+
+    <div id="emails-view">
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input type="submit" class="buttons" value="Send"/>
+        </form>
+    </div>
+
+    <div id="read-view">
+        <div id="read-header">
+        </div>
+        <button class="buttons" id="reply">Reply</button>
+        <button class="buttons" id="archive"></button>
+        <hr>
+        <div id="read-body">
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
