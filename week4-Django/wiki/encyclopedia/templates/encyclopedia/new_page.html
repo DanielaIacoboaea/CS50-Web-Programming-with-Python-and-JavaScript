@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <h3>{{ title }}</h3>
+    <form action="{% url 'addNew' %}" method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ addForm.non_field_errors }}
+        {% for field in addForm %}
+            {% if field.erorrs %}
+                <p>{{ field.erorrs }}</p>
+            {% endif %}
+        {% endfor %}
+        {{ addForm.title }}
+        <p style="font-size: 0.7rem;">Double check your title to make sure it does not exist already.</p>
+        {{ addForm.content }}
+        <input type="submit" value="Add article">
+    </form>
+{% endblock %}

@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    background-color: white;
+    overflow-x: hidden;
+}
+
+code {
+    white-space: pre;
+}
+
+h1 {
+    margin-top: 0px;
+    padding-top: 20px;
+}
+
+textarea {
+    height: 70vh;
+    width: 80%;
+    background-color: #E6F4F1;
+    border: none;
+    box-shadow: 0.3px 0.3px 7px 0.3px #666;
+    outline: none;
+    overflow-y: scroll;
+    resize: none;
+    text-indent: 0.4rem;
+    margin-top: 1rem;
+}
+.textarea-edit{
+    background-color: #f0f0f0;
+}
+
+.main {
+    padding: 10px;
+}
+
+.search {
+    width: 100%;
+    font-size: 15px;
+    line-height: 15px;
+    margin-bottom: 1rem;
+}
+
+.add-title{
+    background-color: #E6F4F1;
+    border: none;
+    box-shadow: 0.3px 0.3px 7px 0.3px #666;
+    margin-bottom: 0.3rem;
+    margin-top: 1rem;
+    outline: none;
+    text-indent: 0.3rem;
+}
+
+.sidebar {
+    background-color: #f0f0f0;
+    height: 100vh;
+    padding: 20px;
+}
+@media (max-width: 750px){
+    .sidebar{
+        height: 35vh;
+    }
+    .main {
+        margin-left: 2rem;
+    }
+}
+
+.sidebar h2 {
+    margin-top: 5px;
+}
+
+input[type="submit"]{
+    display: inline-block;
+    width: 80%;
+    background-color: #E6F4F1;
+    border: 2px solid #E6F4F1;
+    color: #666;
+    font-size: 16px;
+    margin-top: 1rem;
+    padding: 8px 16px;
+    text-align: center;
+    transition-duration: 300ms;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus{
+    background-color: #f0f0f0;
+    color: black;
+}
+.errorlist{
+    background-color: #E6F4F1;
+    width: 80%;
+    color: #EF7E9B;
+    text-align: center;
+    list-style-type: none;
+    padding: 8px 16px;
+    font-weight: bold;
+}
