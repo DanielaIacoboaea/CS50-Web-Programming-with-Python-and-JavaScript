@@ -1,0 +1,102 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="posts-wrapper-profile">
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title"><strong style="color: #1DA1F2;">{{ userProfile.username }}</strong></h5>
+        <p id="profile-id" style="visibility: hidden;">{{ userProfile.id }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            <p><strong>{{ follows }}</strong> Following <strong id="followers-count">{{ followers }}</strong> Followers</p>
+            {% if user.id != userProfile.id %}
+                {% if followBtn %}
+                    <button id="unfollow-btn" class="submit-btn" type="button" value="Following">Following</button>
+                    <button id="follow-btn" class="submit-btn" type="button" value="Follow" style="display: none">Follow</button>
+                {% else %}
+                    <button id="follow-btn" class="submit-btn" type="button" value="Follow">Follow</button>
+                    <button id="unfollow-btn" class="submit-btn" type="button" value="Following" style="display: none">Following</button>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <h5 class="card-title"><strong class="posts">Posts</strong></h5>
+    <div class="posts-wrapper-profile">
+        {% if posts %}
+            {% for post in page_obj.object_list %}
+            <div class="card">
+                <form data-formId="{{post.id}}">
+                    <div class="card-body">
+                    <h5 class="card-title"><strong style="color: #1DA1F2;">{{ post.owner }},</strong><span class="date"> {{ post.date }}</span></h5>
+                    <p class="card-text">{{ post.content }}</p>
+                    <p id="t_{{ post.id }}" class="card-text" style="display: none"><textarea autofocus class="edit-post-content" id="updateContent" name="updateContent" maxlength="300">{{ post.content }}</textarea></p>
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}">
+                    {% endif %}
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="card-bubble">
+                            <p class="comment-btn"><span class="material-symbols-outlined">chat_bubble</span>{{ post.comments.count }}</p>
+                            {% if post.owner == user or post.likes.count == 0 %}
+                                <p class="like-button"><span class="material-symbols-outlined">favorite</span>{{ post.likes.count }}</p>
+                                <p style="visibility: hidden">{{ post.id }}</p>
+                            {% else %}
+                                {% for userLikedPost in userLiked %}
+                                    {% if userLikedPost == post %}
+                                        {% if userLikedPost.is_liked is True %}
+                                            <p class="like-button like"><span class="material-symbols-outlined">favorite</span> {{ post.likes.count }}</p>
+                                            <p style="visibility: hidden">{{ post.id }}</p>
+                                        {% else %}
+                                            <p class="like-button"><span class="material-symbols-outlined">favorite</span> {{ post.likes.count }}</p>
+                                            <p style="visibility: hidden">{{ post.id }}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            {% if post.owner == user %}
+                                <input style="display: none" type="submit" name="edit-post" value="Save">
+                                <button class="edit-btn submit-btn" type="button" value="Edit">Edit</button>
+                                <p style="visibility: hidden">{{ post.id }}</p>
+                            {% endif %}
+                        </div>
+                    {% for comment in comments %}
+                        {% if comment.post == post%}
+                        <div class="card-footer text-muted" style="background-color: #fff; border-radius: 5px;">
+                            <p><strong style="color: #1DA1F2;">{{ comment.user}}</strong>: {{ comment.text}}</p>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+            <!--Django documentation pagination-->
+            <div aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        {% if page_obj.has_previous %}
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo; </a>
+                        {% endif %}
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link page-item active" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                    </li>
+                    <li class="page-item">
+                        {% if page_obj.has_next %}
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo; </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% else %}
+            <p>No posts available.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'network/follow.js' %}"></script>
+    <script src="{% static 'network/editPost.js' %}"></script>
+    <script src="{% static 'network/like.js' %}"></script>
+{% endblock %}

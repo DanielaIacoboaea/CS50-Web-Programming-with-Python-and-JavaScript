@@ -1,0 +1,343 @@
+/*================================
+    Contents
+----------------------------------
+    1. General style 
+    2. Navigation
+    3. Post Cards
+    4. Buttons
+    5. Comments
+    6. Media queries 
+=================================*/
+
+/*================================
+    1. General style 
+=================================*/
+*, *::before, *::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.body{
+    margin-left: 25%;
+    max-width: calc(100% - 25%);
+}
+#posts-wrapper{
+    max-width: 60%;
+}
+.posts-wrapper-profile{
+    max-width: 60%;
+}
+
+.authenticate-layout{
+    height: 100vh;
+    background-color: #1DA1F2;
+}
+.form-group{
+    max-width: 100%;
+}
+
+.authenticate-layout{
+    height: 100vh;
+    background-color: #1DA1F2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authenticate-headers{
+    color: #fff;
+}
+
+/*================================
+    2. Navigation
+=================================*/
+.navigation{
+    height: 100%;
+    width: 25%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-right: 1px solid #F5F8FA;
+    font-size: 1.4rem;
+    padding-top: 4rem;
+}
+a{
+    border-radius: 20px;
+    color: #14171A;
+    padding: 0.7rem;
+    transition-duration: 200ms;
+}
+a:hover{
+    background-color: #F5F8FA;
+    color: #1DA1F2;
+    text-decoration: none;
+}
+.menu-item li{
+    padding-bottom: 3rem;
+    list-style-type: none;
+}
+.navbar-brand{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1DA1F2;
+}
+
+
+/*================================
+    3. Post Cards
+=================================*/
+
+.card:first-child{
+    margin-top: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+.card{
+    width: 100%;
+    box-shadow: 0px 7px 10px -5px #000000;
+    margin-bottom: 0.8rem;
+    margin-left: 0.5rem;
+    transition-duration: 300ms;
+}
+.card:hover{
+    background-color: #F5F8FA;
+}
+.card img{
+    border-radius: 10px;
+    max-width: 100%;
+}
+.posts{
+    color: #1DA1F2;
+    border-bottom: 2px solid #1DA1F2;
+    margin-left: 0.5rem;
+}
+.date{
+    font-size: 1rem;
+    color: #657786;
+}
+.add-post-content{
+    width: 100%;
+    height: 3em;
+    outline: none;
+    resize: none;
+    border: none;
+    border-radius: 5px;
+}
+.card-bubble{
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+}
+.card-post:hover{
+    background-color: #fff;
+}
+.card-post{
+    width: 60%;
+}
+
+/*================================
+    4. Buttons 
+=================================*/
+input[type="submit"],
+.submit-btn{
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 50px;
+    border: 2px solid #1DA1F2;
+    color: #1DA1F2;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 200ms;
+}
+
+#id_image{
+    display: inline-block;
+    border-radius: 10px;
+    color: #1DA1F2;
+    font-size: 14px;
+    padding: 4px 12px;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 200ms;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover,
+.submit-btn:hover,
+#id_image:hover{
+    background-color: #1DA1F2;
+    color: #fff;
+    outline: none;
+}
+
+input[type="file"]{
+    border: none;
+}
+
+.like-button,
+.comment-btn{
+    display: flex;
+    justify-content: baseline;
+}
+
+.like-button span,
+.comment-btn span{
+    cursor: pointer;
+    transition: scale 400ms ease-in-out, color  400ms ease-in-out;
+    font-variation-settings: 
+    'FILL' 0, 
+    'wght' 200, 
+    'GRAD' 0, 
+    'opsz' 48
+}
+.comment-btn span:hover{
+    font-variation-settings: 
+    'FILL' 1, 
+    'wght' 700, 
+    'GRAD' 0, 
+    'opsz' 48;
+    color: #1DA1F2;
+    transform: scale(1.2, 1.2);
+}
+
+.like span{
+    color: red;
+    font-variation-settings: 
+    'FILL' 1, 
+    'wght' 700, 
+    'GRAD' 0, 
+    'opsz' 48;
+    transition: scale 400ms ease-in-out, color  400ms ease-in-out;
+}
+
+.like-button span:hover{
+    font-variation-settings: 
+    'FILL' 1, 
+    'wght' 700, 
+    'GRAD' 0, 
+    'opsz' 48;
+    color: red;
+    transform: scale(1.2, 1.2);
+}
+
+.like span:hover{
+    font-variation-settings: 
+    'FILL' 0, 
+    'wght' 200, 
+    'GRAD' 0, 
+    'opsz' 48;
+    color: #6c757d;
+    transform: scale(1, 1);
+}
+
+.like-button span,
+.comment-btn span{
+    margin-right: 0.2rem;
+}
+
+.login{
+    color: #fff !important;
+    background-color: #1DA1F2 !important;
+    transition-duration: 200ms !important;
+    width: 100%;
+}
+.login:hover{
+    color: #1DA1F2 !important;
+    background-color: #fff !important;
+}
+
+#unfollow-btn{
+    background-color: #1DA1F2;
+    color: #fff;
+}
+
+#unfollow-btn:hover{
+    background-color: #fff;
+    color: #1DA1F2;
+}
+/*================================
+    5. Comments 
+=================================*/
+.edit-post-content,
+.add-comment-content{
+    width: 100%;
+    height: 3em;
+    border-radius: 5px;
+    border: 2px solid #E1E8ED;
+    outline: none;
+    resize: none;
+    text-indent: 0.5rem;
+}
+
+.comment-btn{
+    cursor: pointer;
+    transition: scale 400ms ease-in-out, color  400ms ease-in-out;
+}
+.pagination{
+    width: 100%;
+}
+.page-link{
+    border-color: #1DA1F2;
+    border-radius: 0.25rem;
+    color: #1DA1F2;
+    margin: 0.2rem;
+}
+
+
+/*================================
+    6. Media queries  
+=================================*/
+@media(max-width: 950px){
+    .body{
+        width: 100%;
+        margin: 0 auto;
+    }
+    .navigation{
+        padding-top: 2rem;
+        height: 10%;
+        width: 100%;
+        position: static;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid #F5F8FA;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 0.9rem;
+    }
+    #posts-wrapper{
+        max-width: 100%;
+    }
+    .posts-wrapper-profile{
+        max-width: 100%;
+    }
+    .card-post{
+        width: 100%;
+        min-height: 30vh;
+    }
+    .card{
+        width: 100%;
+        min-height: 35vh;
+    }
+    .menu-item{
+        display: flex;
+        align-items: baseline;
+    }
+    .authenticate-layout{
+        width: 100%;
+    }
+}
+

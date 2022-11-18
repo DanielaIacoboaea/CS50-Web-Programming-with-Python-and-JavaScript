@@ -1,0 +1,100 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="card card-post">
+        <div class="card-body">
+            <h5 class="card-title"><strong style="color: #1DA1F2">{{ user.username }}</strong></h5>
+            <form id="add-post" autocomplete="off" enctype="multipart/form-data">
+            <p class="card-text">{{ form.content }}</p>
+        </div>
+        <div class="card-footer text-muted">
+            <p>{{ form.image }}</p>
+            <input type="submit" name="create-post" value="Post">
+        </div>
+            </form> 
+    </div>
+    <div id="posts-wrapper">
+        {% if posts %}
+            {% for post in page_obj.object_list %}
+                <div class="card" data-postid="{{ post.id }}" data-post-owner="{{ post.owner.id }}">
+                    <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'profile' post.owner.id %}"><strong>{{ post.owner }},</strong></a><span class="date">{{ post.date }}</span></h5>
+                    <p class="card-text">{{ post.content }}</p>
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}">
+                    {% endif %}
+                    </div>
+                    <div class="card-footer text-muted">
+                        <div class="card-bubble">
+                            <p class="comment-btn"><span class="material-symbols-outlined">chat_bubble</span>{{ post.comments.count }}</p>
+                            {% if post.owner == user or post.likes.count == 0 %}
+                                <p class="like-button"><span class="material-symbols-outlined">favorite</span>{{ post.likes.count }}</p>
+                                <p style="visibility: hidden">{{ post.id }}</p>
+                            {% else %}
+                                {% for userLikedPost in userLiked %}
+                                    {% if userLikedPost == post %}
+                                        {% if userLikedPost.is_liked is True %}
+                                            <p class="like-button like"><span class="material-symbols-outlined">favorite</span>{{ post.likes.count }}</p>
+                                            <p style="visibility: hidden">{{ post.id }}</p>
+                                        {% else %}
+                                            <p class="like-button"><span class="material-symbols-outlined">favorite</span>{{ post.likes.count }}</p>
+                                            <p style="visibility: hidden">{{ post.id }}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+
+                            {% if post.owner == user %}
+                                <p><a class="edit-btn submit-btn" href="{% url 'profile' post.owner.id %}">Edit</a></p>
+                                <p style="visibility: hidden">{{ post.id }}</p>
+                            {% endif %}
+                        </div>
+            
+                        {% for comment in comments %}
+                            {% if comment.post == post%}
+                            <div data-comment-post-id="{{ post.id }}" class="card-footer text-muted" style="background-color: #fff; border-radius: 5px;">
+                                <p><strong style="color: #1DA1F2;">{{ comment.user}}</strong>: {{ comment.text}}</p>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        <form method="post" id="add-comment-form" style="display: none;" data-username="{{ user.username }}" data-form-post="{{ post.id }}" action="{% url 'comments' %}">
+                            <div class="card-footer text-muted" style="background-color: #fff; border-radius: 5px;">
+                                <p class="card-text"><textarea autofocus class="add-comment-content" id="addComment" name="addComment" maxlength="300"></textarea></p>
+                                <textarea name="comment-post-id" style="visibility: hidden">{{ post.id }}</textarea>
+                            </div>
+                            <input type="submit" name="save-comment" value="Comment" style="margin-top: 0.2rem">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+                <!--Django documentation pagination-->
+            <div aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        {% if page_obj.has_previous %}
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo; </a>
+                        {% endif %}
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link page-item active" href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                    </li>
+                    <li class="page-item">
+                        {% if page_obj.has_next %}
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo; </a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        {% else %}
+            <p>Create your first post!</p>
+        {% endif %}
+        </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/addPost.js' %}"></script>
+    <script src="{% static 'network/like.js' %}"></script>
+    <script src="{% static 'network/editPost.js' %}"></script>
+    <script src="{% static 'network/comments.js' %}"></script>
+{% endblock %}
